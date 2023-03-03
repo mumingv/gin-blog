@@ -4,13 +4,13 @@
 
 生成go.mod
 
-```
-go mod init "github/com/mumingv/gin-blog"
+```azure
+go mod init "github.com/mumingv/gin-blog"
 ```
 
 创建目录和文件
 
-```
+```azure
 mkdir conf controller dao logger models routers settings static templates util
 touch conf/config.yaml
 touch main.go
@@ -20,33 +20,49 @@ touch main.go
 
 配置文件&对应数据结构定义
 
-```
+```azure
 vim config.yaml
 touch settings/settings.go settings/settings_test.go
 ```
 
 引入第三方库viper读取配置文件
 
-```
+```azure
 go get github.com/spf13/viper
 ```
 
 引入第三方库fsnotify监控配置文件变更
 
-```
+```azure
 go get github.com/fsnotify/fsnotify
 ```
 
 引入第三方库gin框架处理Http请求
 
-```
+```azure
 go get github.com/gin-gonic/gin
 ```
 
 验证配置文件读取&变更
 
-```
+```azure
 go mod tidy
 go run main.go
 http://127.0.0.1:8080/hello
+```
+
+## 日志中间件
+
+引入第三方库zap记录日志
+
+```azure
+go get github.com/natefinch/lumberjack
+go get go.uber.org/zap
+go get go.uber.org/zap/zapcore
+```
+
+验证日志记录情况
+
+```azure
+http://127.0.0.1:9002/hello
 ```

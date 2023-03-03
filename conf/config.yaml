@@ -1,5 +1,5 @@
 mode: "dev"
-port: 9003
+port: 9002
 
 log:
   level: "debug"
