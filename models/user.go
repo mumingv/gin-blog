@@ -3,6 +3,7 @@ package models
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"fmt"
 	"time"
 
 	"github.com/mumingv/gin-blog/dao"
@@ -21,7 +22,7 @@ type User struct {
 	Updated    time.Time
 }
 
-const secret = "wenjie.blog.csdn.net"
+const secret = "henry"
 
 func encryptPassword(data []byte) (result string) {
 	h := md5.New()
@@ -36,6 +37,7 @@ func Login(userName string, password string) (user []*User, err error) {
 	db := dao.DB
 	db = db.Where("username = ?", userName)
 	db = db.Where("password = ?", encryptPassword([]byte(password)))
+	fmt.Println("encryptPassword", encryptPassword([]byte(password)))
 	if err = db.Find(&user).Error; err != nil {
 		return nil, err
 	}

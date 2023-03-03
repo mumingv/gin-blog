@@ -84,3 +84,14 @@ mysql -h127.0.0.1 -P3306 -uroot -p12345678
 use gin_blog
 source gin_blog.sql
 ```
+
+## 后端管理平台
+
+登录后端管理平台
+
+```azure
+http://127.0.0.1:9002/admin/login
+用户名：admin
+密码；admin
+```
+

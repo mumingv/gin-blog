@@ -145,7 +145,7 @@ https://edu.51cto.com/lecturer/14351901.html
         /*写给不支持calc()的浏览器*/
         margin-left: -moz-calc(18% - 13px);
         margin-left: -webkit-calc(18% - 13px);
-        margin-left: calc(18% -13px);
+        margin-left: calc(18% - 13px);
     }
 
     .timeline-main>h1>i {
