@@ -18,9 +18,9 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	// 告诉gin框架模板文件引用的静态文件
-	//r.Static("/static", "static")
+	r.Static("/static", "static")
 	// 告诉gin框架模板文件
-	//r.LoadHTMLGlob("templates/*/*")
+	r.LoadHTMLGlob("templates/*/*")
 
 	// 中间件注册
 	r.Use(logger.GinLogger())

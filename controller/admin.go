@@ -1,13 +1,22 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 type AdminController struct {
 }
 
 // Login 登录
 func (a *AdminController) Login(c *gin.Context) {
-
+	if c.Request.Method == "POST" {
+		// 用户输入用户名、密码后的提交操作
+	} else {
+		// 登录页面的操作内容
+		//c.String(http.StatusOK, "hello")
+		c.HTML(http.StatusOK, "login.html", nil)
+	}
 }
 
 // Logout 退出
