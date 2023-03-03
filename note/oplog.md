@@ -66,3 +66,21 @@ go get go.uber.org/zap/zapcore
 ```azure
 http://127.0.0.1:9002/hello
 ```
+
+## MySQL
+
+引入第三方库gorm访问MySQL
+
+```azure
+go get github.com/jinzhu/gorm
+go mod tidy
+```
+
+创建数据库gin_blog
+
+```azure
+create database gin_blog
+mysql -h127.0.0.1 -P3306 -uroot -p12345678
+use gin_blog
+source gin_blog.sql
+```
