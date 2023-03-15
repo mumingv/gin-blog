@@ -54,7 +54,9 @@ func (a *AdminController) Login(c *gin.Context) {
 
 // Logout 退出
 func (a *AdminController) Logout(c *gin.Context) {
-
+	fmt.Println("退出登录")
+	util.DeploySess(c, "user")
+	c.Redirect(http.StatusMovedPermanently, "/admin/login")
 }
 
 // Main 主页
