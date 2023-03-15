@@ -95,3 +95,8 @@ http://127.0.0.1:9002/admin/login
 密码；admin
 ```
 
+## 登录Session管理
+
+```
+go get github.com/gin-contrib/sessions
+```

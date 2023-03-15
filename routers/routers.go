@@ -5,6 +5,7 @@ import (
 	"github.com/mumingv/gin-blog/controller"
 	"github.com/mumingv/gin-blog/logger"
 	"github.com/mumingv/gin-blog/settings"
+	"github.com/mumingv/gin-blog/util"
 )
 
 func helloHandler(ctx *gin.Context) {
@@ -24,7 +25,8 @@ func SetupRouter() *gin.Engine {
 
 	// 中间件注册
 	r.Use(logger.GinLogger())
-
+	// 集成Session
+	util.InitSession(r)
 	// 函数注册
 	r.GET("/hello", helloHandler)
 

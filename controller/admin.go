@@ -1,9 +1,11 @@
 package controller
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/mumingv/gin-blog/models"
+	"github.com/mumingv/gin-blog/util"
 	"go.uber.org/zap"
 	"net/http"
 	"time"
@@ -31,6 +33,13 @@ func (a *AdminController) Login(c *gin.Context) {
 		fmt.Println("数据库验证成功")
 
 		// 3. 用户信息保存到session
+		sess, _ := json.Marshal(user[0])
+		err := util.SetSess(c, "user", sess)
+		if err != nil {
+			fmt.Println("登录失败")
+			c.HTML(http.StatusOK, "login.html", nil)
+			return
+		}
 
 		// 4. 直接跳转主页面
 		ts := time.Now().Unix()
