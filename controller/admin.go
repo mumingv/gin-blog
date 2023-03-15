@@ -70,7 +70,16 @@ func (a *AdminController) Main(c *gin.Context) {
 
 // Config 系统配置信息展示
 func (a *AdminController) Config(c *gin.Context) {
+	result, _ := models.ConfigList()
 
+	options := make(map[string]string)
+	for _, v := range result {
+		options[v.Name] = v.Value
+	}
+
+	dataList := gin.H{}
+	dataList["config"] = options
+	c.HTML(http.StatusOK, "config.html", dataList)
 }
 
 // AddConfig 系统配置信息更新
