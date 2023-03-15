@@ -70,8 +70,8 @@ func (a *AdminController) Main(c *gin.Context) {
 
 // Config 系统配置信息展示
 func (a *AdminController) Config(c *gin.Context) {
+	// 获取所有配置
 	result, _ := models.ConfigList()
-
 	options := make(map[string]string)
 	for _, v := range result {
 		options[v.Name] = v.Value
@@ -84,7 +84,43 @@ func (a *AdminController) Config(c *gin.Context) {
 
 // AddConfig 系统配置信息更新
 func (a *AdminController) AddConfig(c *gin.Context) {
+	options := make(map[string]string)
+	mp := make(map[string]*models.Config)
 
+	// 获取所有的配置
+	result, _ := models.ConfigList()
+	for _, v := range result {
+		options[v.Name] = v.Value
+		mp[v.Name] = v
+	}
+	// 按照每个字段更新KV config表数据
+	// 更新 (ID)
+	// 插入
+
+	if c.Request.Method == "POST" {
+		keys := []string{"url", "title", "keywords", "description", "email", "timezone", "start", "qq"}
+
+		for _, key := range keys {
+			val := c.PostForm(key) // form 表单数据
+			if _, ok := mp[key]; !ok {
+				options[key] = val
+				models.UpdateConfig(&models.Config{Name: key, Value: val})
+			} else {
+				opt := mp[key]
+				if err := models.UpdateConfig(&models.Config{Id: opt.Id, Name: key, Value: val}); err != nil {
+					continue
+				}
+			}
+
+		}
+	}
+
+	// 给个提示语
+	msg := "数据保存成功"
+	info := "<script> alert('" + msg + "');window.history.go(-1); </script>"
+	c.Writer.WriteString(info)
+	// 跳转
+	c.Redirect(http.StatusMovedPermanently, "/admin/config")
 }
 
 // Index 后台首页
