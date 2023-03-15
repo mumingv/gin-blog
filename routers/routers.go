@@ -34,6 +34,7 @@ func SetupRouter() *gin.Engine {
 
 	// 后端系统
 	v2Group := r.Group("admin")
+	v2Group.Use(controller.AuthMiddleware())
 	admin := controller.AdminController{}
 	{
 		// 主页面登录
